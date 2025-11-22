@@ -3,8 +3,14 @@ String VIDEO_FILENAME = "collatz_multiverse_BLEH.mp4";
 String AUDIO_FILENAME = "bleh.txt";
 boolean SAVE_VIDEO = true;
 VideoExport videoExport;
-
 import processing.sound.*;
+
+// determine which universes are rendered, and how many. If you just want to see one, set WORLD_T_W and WORLD_T_H to 1.
+int WORLD_T_XSTART = 0;
+int WORLD_T_YSTART = 0;
+int WORLD_T_W = 3;
+int WORLD_T_H = 3;
+
 SoundFile[] sfx;
 String[] sfx_names = {"drop", "whoosh"};
 float SPEED_UP_RATE = 0.6;  // 0.5 is normal. The lower the number, the faster the speed up of a chain.
@@ -13,8 +19,6 @@ int CREATE_EVERY = 180;
 float CHAIN_TIME = 90;
 float RAD = 20;
 
-int WORLD_T_W = 3;
-int WORLD_T_H = 3;
 World[][] worlds = new World[WORLD_T_W][WORLD_T_H];
 
 
@@ -46,7 +50,7 @@ void createWorlds(){
     for(int y = 0; y < WORLD_T_H; y++){
       float ap_x = SCREEN_W*(((float)x)/WORLD_T_W)+M;
       float ap_y = SCREEN_H*(((float)y)/WORLD_T_W)+M;
-      worlds[x][y] = new World(3+WORLD_T_H-1-y,0+x,ap_x,ap_y,random(0,1));
+      worlds[x][y] = new World(WORLD_T_YSTART+WORLD_T_H-1-y,WORLD_T_XSTART+x,ap_x,ap_y,random(0,1));
     }
   }
 }
@@ -224,3 +228,4 @@ void mousePressed(){
 void mouseReleased(){
   dragging = null;
 }
+
