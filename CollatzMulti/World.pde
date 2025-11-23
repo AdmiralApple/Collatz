@@ -47,9 +47,8 @@ class World{
     canvas.textSize(FS);
     canvas.textAlign(CENTER);
     canvas.fill(0,0,1,0.34);
-    //canvas.text("y = "+a+"x + "+b,WORLD_W*0.5,WORLD_H*0.5+FS*0.3);
-    canvas.text("If even, y = x/2",WORLD_W*0.5,WORLD_H*0.5+FS*0.3);
-      
+    canvas.text("y = "+a+"x + "+b,WORLD_W*0.5,WORLD_H*0.5+FS*0.3);
+    
     for(int n = 0; n < nums.size(); n++){
        Num num = nums.get(n);
        num.drawNum();
