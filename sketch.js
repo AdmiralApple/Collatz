@@ -4,6 +4,8 @@
 // together while nearby nodes repel each other.
 
 let nodes = new Map();
+let spawnTimer = 0;
+let spawnInterval = 90;
 let maxValue = 50000;
 let lowestMissing = 1;
 let worldHue = 0.55;
@@ -25,9 +27,8 @@ function setup() {
   textFont("Inter", 16);
 
   // Wire up UI elements so visitors can tweak the rule and pacing.
-  document.getElementById("add-btn").addEventListener("click", createNextChain);
   document.getElementById("reset-btn").addEventListener("click", resetSimulation);
-  ["input-a", "input-b", "input-max"].forEach((id) => {
+  ["input-a", "input-b", "input-interval", "input-max"].forEach((id) => {
     document.getElementById(id).addEventListener("change", resetSimulation);
   });
 
@@ -37,9 +38,11 @@ function setup() {
 function resetSimulation() {
   nodes.clear();
   lowestMissing = 1;
+  spawnTimer = 0;
+  spawnInterval = int(document.getElementById("input-interval").value) || 90;
   maxValue = int(document.getElementById("input-max").value) || 50000;
   worldHue = (1.618 * (getA() + 2 * getB()) + 0.5) % 1.0;
-  updateStatus("Click \"Add start\" to grow the next chain.");
+  updateStatus("Building chain from 1…");
 }
 
 function getA() {
@@ -60,6 +63,13 @@ function draw() {
 
   // Step 2: render all connections and circles.
   nodes.forEach((node) => node.drawNode());
+
+  // Step 3: spawn a new chain when the timer elapses.
+  spawnTimer -= 1;
+  if (spawnTimer <= 0) {
+    createNextChain();
+    spawnTimer = spawnInterval;
+  }
 }
 
 function drawBackdrop() {
@@ -86,7 +96,6 @@ function evaluate(val) {
   return result;
 }
 
-// Grow the graph by starting at the next unseen integer; triggered by the UI.
 function createNextChain() {
   let chain = [];
   let val = lowestMissing;
@@ -102,6 +111,7 @@ function createNextChain() {
     updateStatus(
       `Growth exceeded the upper bound (${maxValue}). Try lowering a or b, or raise the bound.`,
     );
+    spawnTimer = spawnInterval * 4; // slow down while stuck
     return;
   }
 
