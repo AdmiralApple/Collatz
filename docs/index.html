@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collatz Multiverse (p5.js)</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Collatz Multiverse</h1>
+    <p>Interactive, in-browser rendering of Collatz-style sequences inspired by the original Processing sketch.</p>
+  </header>
+  <main>
+    <section class="canvas-container">
+      <div id="canvas-holder"></div>
+    </section>
+    <section class="controls">
+      <div class="control-group">
+        <label for="grid-size">Grid size:</label>
+        <input type="number" id="grid-size" min="1" max="4" value="3" />
+      </div>
+      <div class="control-group">
+        <label for="speed">Spawn pacing:</label>
+        <input type="range" id="speed" min="40" max="240" step="10" value="120" />
+        <span id="speed-label">120 frames</span>
+      </div>
+      <div class="control-group">
+        <button id="reset">Reset worlds</button>
+      </div>
+      <p class="note">Drag nodes to nudge their positions. Each panel shows <code>y = ax + b</code> using the row (<em>a</em>) and column (<em>b</em>) indices.</p>
+    </section>
+  </main>
+  <footer>
+    <p>Built with p5.js for GitHub Pages. Original Processing sketch by the repository author.</p>
+  </footer>
+  <script src="sketch.js"></script>
+</body>
+</html>

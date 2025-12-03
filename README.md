@@ -1,11 +1,14 @@
-To create the actual animation, go to the Collatz/CollatzMulti folder, and then open CollatzMulti.pde in Processing 4 (https://processing.org/download) and run it. Fun!
-Here's the video this code was used for: https://www.youtube.com/watch?v=n63FBYqj98E
+# Collatz Visualizer
 
-## Browser version
-The repository now includes a p5.js sketch that runs in any modern browser and is suitable for GitHub Pages. Open `index.html` (or host the repo with Pages) to interactively explore Collatz-style rules. Controls at the top of the page let you adjust the odd multiplier `a`, odd offset `b`, spawn pace, and the numeric ceiling that halts runaway growth.
+This repository now includes both the original Processing sketch and a browser-friendly p5.js port so it can run on GitHub Pages.
 
-To preview locally without Processing:
+## Desktop Processing sketch
+- Open `CollatzMulti/CollatzMulti.pde` in Processing 4 (https://processing.org/download) to recreate the original multi-world animation.
+- The sketch still supports exporting audio/video when run locally.
 
-1. From the repository root, start a tiny web server: `python -m http.server 8000`
-2. Visit http://localhost:8000 in your browser.
-3. Use the controls to tweak the rule and watch the graph update live.
+## Browser version (GitHub Pages)
+- The `docs/` folder hosts the p5.js rewrite that mirrors the multi-world layout and force-directed node behavior.
+- Open `docs/index.html` directly or serve the folder locally with `python -m http.server 8000` and visit `http://localhost:8000/docs/`.
+- Adjust the grid size (number of simultaneous worlds), tweak spawn pacing, and drag nodes to nudge their trajectories. The browser build omits audio/video capture so it can run without extra permissions.
+
+Here's the video the original code was used for: https://www.youtube.com/watch?v=n63FBYqj98E
