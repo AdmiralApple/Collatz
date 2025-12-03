@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collatz Multiverse (p5.js)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Collatz Multiverse — Browser Edition</h1>
+      <p>
+        Explore Collatz-style rules directly in the browser. Adjust <code>a</code> and <code>b</code>,
+        then watch the graph that links each value to the result of <code>y = ax + b</code> for odd
+        numbers and <code>y = x/2</code> for even numbers.
+      </p>
+    </header>
+    <section class="controls">
+      <label>Odd multiplier (a): <input id="input-a" type="number" step="1" value="3" /></label>
+      <label>Odd offset (b): <input id="input-b" type="number" step="1" value="1" /></label>
+      <label>Spawn pace (frames): <input id="input-interval" type="number" step="1" value="90" /></label>
+      <label>Upper bound: <input id="input-max" type="number" step="1000" value="50000" /></label>
+      <button id="reset-btn">Reset simulation</button>
+      <span id="status"></span>
+    </section>
+    <div id="canvas-wrapper"></div>
+    <section class="notes">
+      <h2>How it works</h2>
+      <ul>
+        <li>Even numbers map to <code>x/2</code>; odd numbers map to <code>ax + b</code>.</li>
+        <li>Nodes attract their target and repel neighbors to keep the layout readable.</li>
+        <li>Colors depend on the highest value seen so far; higher values drift toward red.</li>
+        <li>If the rule grows past the selected upper bound, the simulation pauses.</li>
+      </ul>
+    </section>
+  </main>
+  <script src="sketch.js"></script>
+</body>
+</html>
